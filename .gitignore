@@ -5,4 +5,5 @@ build/
 .env
 
 public/index.html
+public/report.html
 public/favicon.png

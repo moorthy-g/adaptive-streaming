@@ -3,6 +3,7 @@ path = require('path'),
 HtmlWebpackPlugin = require('html-webpack-plugin'),
 ExtractTextWebpackPlugin = require('extract-text-webpack-plugin'),
 CleanWebpackPlugin = require('clean-webpack-plugin'),
+BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin,
 publicDirectory = path.resolve(__dirname, 'public'),
 isDevelopment = (process.env.NODE_ENV !== 'production'),
 port = process.env.PORT || 8000;
@@ -53,6 +54,10 @@ const plugins = [
     // extract a 'manifest' chunk, then include it to the app
     new webpack.optimize.CommonsChunkPlugin({
         names: [ 'manifest' ]
+    }),
+    new BundleAnalyzerPlugin({
+        analyzerMode: 'static',
+        openAnalyzer: false
     })
 ]
 
