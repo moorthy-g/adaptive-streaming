@@ -3,7 +3,7 @@ path = require('path'),
 HtmlWebpackPlugin = require('html-webpack-plugin'),
 ExtractTextWebpackPlugin = require('extract-text-webpack-plugin'),
 CleanWebpackPlugin = require('clean-webpack-plugin'),
-buildDirectory = path.resolve(__dirname, 'build'),
+publicDirectory = path.resolve(__dirname, 'public'),
 isDevelopment = (process.env.NODE_ENV !== 'production'),
 port = process.env.PORT || 8000;
 
@@ -29,11 +29,11 @@ const rules = [
     },
     {
         test: /\.(jpe?g|png|gif|webp|svg)$/,
-        loader: 'file-loader?name=img/[name].[hash:8].[ext]'
+        loader: 'file-loader?name=build/img/[name].[hash:8].[ext]'
     },
     {
         test: /\.(woff|woff2|ttf|eot)$/,
-        loader: 'file-loader?name=font/[name].[hash:8].[ext]'
+        loader: 'file-loader?name=build/font/[name].[hash:8].[ext]'
     }
 ]
 
@@ -42,8 +42,8 @@ const plugins = [
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
     }),
     new ExtractTextWebpackPlugin({
-        filename: 'style/[contenthash:20].css',
-        disable: isDevelopment
+        filename: 'build/style/[contenthash:20].css',
+        disable: false
     }),
     new HtmlWebpackPlugin({
         template: path.resolve(__dirname, 'src/index.html'),
@@ -58,7 +58,7 @@ const plugins = [
 
 const buildPlugins = [
     new CleanWebpackPlugin(
-        buildDirectory
+        path.resolve(publicDirectory, 'build')
     ),
     new webpack.optimize.UglifyJsPlugin({
         compress: {
@@ -75,9 +75,9 @@ module.exports = {
     },
 
     output: {
-        path: buildDirectory,
-        publicPath: '/',
-        filename: 'js/[name].[chunkhash].js'
+        path: publicDirectory,
+        publicPath: isDevelopment ? '/' : './',
+        filename: 'build/js/[name].[chunkhash].js'
     },
 
     module: {

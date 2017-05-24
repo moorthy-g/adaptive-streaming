@@ -3,3 +3,6 @@ build/
 *.log
 *.log*
 .env
+
+public/index.html
+public/favicon.png
