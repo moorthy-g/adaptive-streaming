@@ -4,6 +4,5 @@ build/
 *.log*
 .env
 
-public/index.html
-public/report.html
-public/favicon.png
+public/*
+!public/.gitkeep
