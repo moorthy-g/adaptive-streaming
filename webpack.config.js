@@ -100,6 +100,8 @@ module.exports = {
     },
 
     devServer: {
+        contentBase: publicDirectory,
+        disableHostCheck: true,
         host: '0.0.0.0',
         port: port,
         inline: true,

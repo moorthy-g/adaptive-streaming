@@ -2,8 +2,8 @@
   "name": "basic-webpack-boilterplate",
   "version": "0.1.0",
   "description": "A simple webpack boilterplate with webpack-dev-server & babel",
-  "main": "''",
-  "repository": "git@github.com:moorthy-g/basic-webpack-boilterplate.git",
+  "main": "",
+  "repository": "",
   "author": "Moorthy <moorthy.g@krds.fr>",
   "license": "WTFPL",
   "scripts": {
@@ -27,6 +27,7 @@
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "video.js": "^5.19.2"
   }
 }
