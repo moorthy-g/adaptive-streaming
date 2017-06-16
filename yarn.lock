@@ -3724,6 +3724,10 @@ videojs-ie8@1.1.2:
   dependencies:
     es5-shim "^4.5.1"
 
+videojs-shaka-player@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/videojs-shaka-player/-/videojs-shaka-player-0.2.0.tgz#b463f308bed194ecfc44197913ae29ecc89457a6"
+
 videojs-swf@5.3.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/videojs-swf/-/videojs-swf-5.3.0.tgz#b79408ab4ad5dd8f6f20e8abfc33150b098aab57"

@@ -29,6 +29,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "shaka-player": "^2.1.3",
-    "video.js": "^5.19.2"
+    "video.js": "^5.19.2",
+    "videojs-shaka-player": "^0.2.0"
   }
 }

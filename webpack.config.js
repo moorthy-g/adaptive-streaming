@@ -55,6 +55,9 @@ const plugins = [
     new webpack.optimize.CommonsChunkPlugin({
         names: [ 'manifest' ]
     }),
+    new webpack.ProvidePlugin({
+        videojs: 'video.js'
+    }),
     new BundleAnalyzerPlugin({
         analyzerMode: 'static',
         openAnalyzer: false
