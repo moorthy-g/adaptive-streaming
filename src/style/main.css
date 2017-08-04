@@ -1,5 +1,14 @@
-.video-js, .shaka {
-    width: 568px;
-    height: 320px;
+.container {
+    width: 598px;
+    text-align: center;
     margin: 0 auto;
+}
+.video-js, .shaka {
+    width: 100%;
+    height: 320px;
+}
+.container select {
+    position: absolute;
+    width: auto;
+    top: 20px;
 }
