@@ -1,15 +1,15 @@
-import 'video.js/dist/video-js.css'
-import videojs from 'video.js'
-import 'videojs-shaka-player'
+import 'video.js/dist/video-js.css';
 
-var instance = new Object()
+window.videojs = require('video.js').default;
+require('videojs-contrib-hls/dist/videojs-contrib-hls');
+
+var instance = new Object();
 
 instance.init = function() {
-    this.player = videojs('player', {
+    this.player = window.videojs('player', {
         controls: true,
-        techOrder: ['shaka', 'html5'],
         sources: [
-            { type: 'application/dash+xml', src: './video/574825.mpd' },
+            { type:'application/x-mpegURL', src: './video/574825.m3u8' },
             { type: 'video/mp4', src: './video/friendship.mp4' }
         ]
     })
