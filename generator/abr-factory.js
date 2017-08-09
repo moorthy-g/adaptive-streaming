@@ -1,8 +1,10 @@
 const { exec } = require('child_process');
+const { EventEmitter } = require('events');
 const input = process.argv[2];
 
-class AbrFactory {
+class AbrFactory extends EventEmitter {
     constructor(input, customConfig) {
+        super();
         let config;
         this.dateTime = new Date().getTime();
         this.inputFile = input;
@@ -43,11 +45,15 @@ class AbrFactory {
         });
 
         abr.on('error', (err) => {
-            throw new Error(err);
+            this.emit('error', { error: err });
         });
 
         abr.on('close', (code) => {
-            console.log(`child process exited with code ${code}`);
+            if(code === 0) {
+                this.emit('complete');
+            } else {
+                this.emit('error', code);
+            }
         });
 
     }
