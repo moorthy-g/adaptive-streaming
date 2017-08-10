@@ -9,8 +9,9 @@
    
 ## Usage - CLI
 ```bash
-node abr-factory.js path/to/video
+node abr-factory.js path/to/video [--no-audio]
 ```
+Use `--no-audio` flag, if the input has no audio track, otherwise it throws error
  
 ## Usage - As Module
 ```javascript
@@ -20,7 +21,7 @@ const instance = new AbrFactory('video/path', <config object>);
 
 ## Configuration
 - `outDirectory`:`string` Output Directory. Default 'out_`datetime`'
-- `hasAudio`:`boolean` - Whether to include audio stream. Default `true`
+- `noAudio`:`boolean` - Tells if the input has no audio track, otherwise module throws error. Default `false`
 - `dash`:`boolean` - Whether to output DASH content. Default `true`
 - `hls`:`boolean` - Whether to output HLS content. Default `true`
 - `hlsUsesDashFrags`:`boolean`- Whether to use DASH fragments in HLS manifest. So, we don't need seperate TS fragments for HLS. Anyhow, beware of browser support. Default `false`

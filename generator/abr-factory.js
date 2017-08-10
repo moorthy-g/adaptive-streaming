@@ -1,6 +1,7 @@
 const { exec } = require('child_process');
 const { EventEmitter } = require('events');
 const input = process.argv[2];
+const noAudio = process.argv[3] === '--no-audio';
 
 class AbrFactory extends EventEmitter {
     constructor(input, customConfig) {
@@ -12,7 +13,7 @@ class AbrFactory extends EventEmitter {
         this.command = 'cd . ';
         config = this.config = Object.assign({
             outDirectory: 'out_'+ this.dateTime,
-            hasAudio: true,
+            noAudio: noAudio,
             dash: true,
             hls: true,
             hlsUsesDashFrags: false,
@@ -70,7 +71,7 @@ class AbrFactory extends EventEmitter {
     }
 
     processAudio() {
-        this.command += this.config.hasAudio ? `-c:a aac -strict -2 -b:a 128k -ac 2 -vn ${this.tmpDirectory}/audio.mp4 ` : '';
+        this.command += !this.config.noAudio ? `-c:a aac -strict -2 -b:a 128k -ac 2 -vn ${this.tmpDirectory}/audio.mp4 ` : '';
         return this;
     }
 
@@ -86,7 +87,7 @@ class AbrFactory extends EventEmitter {
 
     mp4fragment() {
         let streams = this.config.streams.slice(0);
-        this.config.hasAudio && streams.push('audio');
+        !this.config.noAudio && streams.push('audio');
         streams.forEach( stream => {
             this.command += `&& mp4fragment ${this.tmpDirectory}/${stream}.mp4 ${this.tmpDirectory}/${stream}f.mp4\
             --fragment-duration ${this.config.fragDuration*1000} `
@@ -121,7 +122,7 @@ class AbrFactory extends EventEmitter {
 
     getFiles() {
         let streams = this.config.streams.slice(0);
-        this.config.hasAudio && streams.push('audio');
+        !this.config.noAudio && streams.push('audio');
         return streams.reduce((files, value) => {
             return `${files} ${this.tmpDirectory}/${value}f.mp4 `;
         }, '')
